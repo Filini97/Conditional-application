@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MyTests {
-
+    @Autowired
+    private TestRestTemplate restTemplate;
     @Container
     private static final GenericContainer<?> devContainer = new GenericContainer<>("devapp")
             .withExposedPorts(8080);
@@ -21,11 +23,9 @@ public class MyTests {
     private static final GenericContainer<?> prodContainer = new GenericContainer<>("prodapp")
             .withExposedPorts(8081);
 
-    @Autowired
-    private TestRestTemplate restTemplate;
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    void setUp() {
         devContainer.start();
         prodContainer.start();
     }
@@ -42,10 +42,5 @@ public class MyTests {
         assertEquals("ExpectedResponseFromDevContainer", forEntity.getBody());
     }
 
-    @Test
-    void contextLoads() {
-        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + devContainer.getMappedPort(8080), String.class);
-        System.out.println(forEntity.getBody());
-    }
 }
 
