@@ -1,4 +1,6 @@
-import org.junit.jupiter.api.BeforeAll;
+package tests.config;
+
+import conditionalapplication.ConditionalApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,10 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {TestConfig.class, ConditionalApplication.class})
 public class MyTests {
     @Autowired
     private TestRestTemplate restTemplate;

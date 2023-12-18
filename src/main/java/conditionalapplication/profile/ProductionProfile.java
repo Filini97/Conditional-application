@@ -1,4 +1,4 @@
-package profile;
+package conditionalapplication.profile;
 
 public class ProductionProfile implements SystemProfile {
     @Override

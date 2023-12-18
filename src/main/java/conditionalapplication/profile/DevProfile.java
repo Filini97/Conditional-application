@@ -1,7 +1,4 @@
-package profile;
-
-import java.util.ArrayList;
-import java.util.List;
+package conditionalapplication.profile;
 
 public class DevProfile implements SystemProfile {
     @Override

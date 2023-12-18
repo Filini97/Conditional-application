@@ -1,11 +1,13 @@
-package config;
+package conditionalapplication.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import profile.DevProfile;
-import profile.ProductionProfile;
-import profile.SystemProfile;
+import conditionalapplication.profile.DevProfile;
+import conditionalapplication.profile.ProductionProfile;
+import conditionalapplication.profile.SystemProfile;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan(basePackages = "conditionalapplication")
 public class JavaConfig {
 
 @Bean
