@@ -1,4 +1,4 @@
-package conditionalapplication.config;
+package conditionalapplication;
 
 import org.springframework.context.annotation.Configuration;
 
