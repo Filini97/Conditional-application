@@ -1,4 +1,5 @@
-package conditionalapplication.profile;
+package conditionalapplication.profiles;
+
 
 public interface SystemProfile {
     String getProfile();

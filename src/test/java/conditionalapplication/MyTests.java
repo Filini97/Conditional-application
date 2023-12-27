@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -18,13 +16,10 @@ public class MyTests {
     @Autowired
     private TestRestTemplate restTemplate;
     @Container
-    private static final GenericContainer<?> devContainer = new GenericContainer<>("devapp")
-            .withExposedPorts(8080);
+    private static final GenericContainer<?> devContainer = new GenericContainer<>("devapp").withExposedPorts(8080);
 
     @Container
-    private static final GenericContainer<?> prodContainer = new GenericContainer<>("prodapp")
-            .withExposedPorts(8081);
-
+    private static final GenericContainer<?> prodContainer = new GenericContainer<>("prodapp").withExposedPorts(8081);
 
     @BeforeEach
     void setUp() {
@@ -33,7 +28,7 @@ public class MyTests {
     }
 
     @Test
-     void testFirstContainer() {
+    void testFirstContainer() {
         ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + devContainer.getMappedPort(8080), String.class);
         assertEquals("ExpectedResponseFromAppContainer", forEntity.getBody());
     }
@@ -43,6 +38,4 @@ public class MyTests {
         ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:" + prodContainer.getMappedPort(8081), String.class);
         assertEquals("ExpectedResponseFromDevContainer", forEntity.getBody());
     }
-
 }
-

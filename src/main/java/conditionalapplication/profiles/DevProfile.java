@@ -1,4 +1,4 @@
-package conditionalapplication.profile;
+package conditionalapplication.profiles;
 
 public class DevProfile implements SystemProfile {
     @Override
